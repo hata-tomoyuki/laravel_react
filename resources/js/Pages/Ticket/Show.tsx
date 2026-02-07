@@ -20,13 +20,13 @@ export default function TicketShow({ ticket }: TicketDetailPageProps) {
                         チケット詳細 #{ticket.id}
                     </h2>
                     <div className="flex gap-2">
-                        <Link href={route('ticket.index') as string}>
+                        <Link href={route('tickets.index') as string}>
                             <SecondaryButton>
                                 一覧に戻る
                             </SecondaryButton>
                         </Link>
                         {/* 編集機能は未実装のため、一旦一覧に戻るリンクにしています */}
-                        <Link href={route('ticket.index') as string}>
+                        <Link href={route('tickets.index') as string}>
                             <PrimaryButton className="opacity-50 cursor-not-allowed">
                                 編集
                             </PrimaryButton>

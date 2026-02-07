@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class TicketController extends Controller
+class TicketsController extends Controller
 {
     /**
      * Display a listing of the resource.

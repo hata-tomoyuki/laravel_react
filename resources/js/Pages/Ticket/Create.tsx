@@ -171,7 +171,7 @@ export default function TicketCreate({ users, categories }: TicketCreatePageProp
                                 </div>
 
                                 <div className="flex items-center justify-end gap-4">
-                                    <Link href={route('ticket.index') as string}>
+                                    <Link href={route('tickets.index') as string}>
                                         <SecondaryButton disabled={processing}>
                                             キャンセル
                                         </SecondaryButton>

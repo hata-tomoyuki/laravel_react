@@ -20,7 +20,7 @@ export default function TicketIndex({ tickets }: TicketIndexPageProps) {
                     <h2 className="text-xl font-semibold leading-tight text-gray-800">
                         チケット一覧
                     </h2>
-                    <Link href={route('ticket.create') as string}>
+                    <Link href={route('tickets.create') as string}>
                         <PrimaryButton>
                             新規チケット作成
                         </PrimaryButton>
@@ -57,7 +57,7 @@ export default function TicketIndex({ tickets }: TicketIndexPageProps) {
                                 <h3 className="mt-2 text-sm font-medium text-gray-900">チケットがありません</h3>
                                 <p className="mt-1 text-sm text-gray-500">新しいチケットを作成して追跡を開始しましょう。</p>
                                 <div className="mt-6">
-                                    <Link href={route('ticket.create') as string}>
+                                    <Link href={route('tickets.create') as string}>
                                         <PrimaryButton>
                                             チケットを作成
                                         </PrimaryButton>
@@ -85,7 +85,7 @@ export default function TicketIndex({ tickets }: TicketIndexPageProps) {
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <div className="flex flex-col">
-                                                        <Link href={route('ticket.show', ticket.id) as string}>
+                                                        <Link href={route('tickets.show', ticket.id) as string}>
                                                             <span className="text-sm font-medium text-indigo-600 hover:text-indigo-900">
                                                                 {ticket.title}
                                                             </span>

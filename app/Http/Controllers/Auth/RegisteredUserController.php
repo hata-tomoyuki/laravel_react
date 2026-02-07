@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('ticket.index', absolute: false));
+        return redirect(route('tickets.index', absolute: false));
     }
 }

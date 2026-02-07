@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,10 +22,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.index');
-    Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
-    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.show');
-    Route::post('/ticket', [TicketController::class, 'store'])->name('ticket.store');
+    Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets.index');
+    Route::get('/tickets/create', [TicketsController::class, 'create'])->name('tickets.create');
+    Route::get('/tickets/{id}', [TicketsController::class, 'show'])->name('tickets.show');
+    Route::post('/tickets', [TicketsController::class, 'store'])->name('tickets.store');
 });
 
 
