@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -28,7 +30,12 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $categories = Category::all();
+        return Inertia::render('Ticket/Create', [
+            'users' => $users,
+            'categories' => $categories
+        ]);
     }
 
     /**
