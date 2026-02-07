@@ -85,9 +85,11 @@ export default function TicketIndex({ tickets }: TicketIndexPageProps) {
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <div className="flex flex-col">
-                                                        <span className="text-sm font-medium text-indigo-600 hover:text-indigo-900">
-                                                            {ticket.title}
-                                                        </span>
+                                                        <Link href={route('ticket.show', ticket.id) as string}>
+                                                            <span className="text-sm font-medium text-indigo-600 hover:text-indigo-900">
+                                                                {ticket.title}
+                                                            </span>
+                                                        </Link>
                                                         <span className="text-sm text-gray-500 truncate max-w-xs">
                                                             {ticket.body}
                                                         </span>

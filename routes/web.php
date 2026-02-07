@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/ticket', [TicketController::class, 'index'])->name('ticket.index');
+    Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.show');
 });
 
 

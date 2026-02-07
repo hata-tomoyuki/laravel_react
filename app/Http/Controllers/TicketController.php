@@ -44,7 +44,10 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ticket = Ticket::with(['category', 'requester', 'assignee'])->findOrFail($id);
+        return Inertia::render('Ticket/Show', [
+            'ticket' => $ticket,
+        ]);
     }
 
     /**
