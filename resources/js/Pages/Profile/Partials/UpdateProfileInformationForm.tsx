@@ -4,12 +4,19 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import type { FormEventHandler } from 'react';
+
+interface UpdateProfileInformationProps {
+    mustVerifyEmail?: boolean | undefined;
+    status?: string | undefined;
+    className?: string | undefined;
+}
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
     status,
     className = '',
-}) {
+}: UpdateProfileInformationProps) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
@@ -18,7 +25,7 @@ export default function UpdateProfileInformation({
             email: user.email,
         });
 
-    const submit = (e) => {
+    const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
         patch(route('profile.update'));
@@ -44,7 +51,7 @@ export default function UpdateProfileInformation({
                         id="name"
                         className="mt-1 block w-full"
                         value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData('name', e.target.value)}
                         required
                         isFocused
                         autoComplete="name"
@@ -61,7 +68,7 @@ export default function UpdateProfileInformation({
                         type="email"
                         className="mt-1 block w-full"
                         value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
                     />
