@@ -6,16 +6,8 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { priorityLabels, statusLabels } from '@/const/labels';
-
-interface User {
-    id: number;
-    name: string;
-}
-
-interface Category {
-    id: number;
-    name: string;
-}
+import type { User } from '@/types/user';
+import type { Category } from '@/types/category';
 
 interface TicketCreatePageProps {
     currentUser: User;

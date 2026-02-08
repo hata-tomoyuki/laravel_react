@@ -6,28 +6,10 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { priorityLabels, statusLabels } from '@/const/labels';
-
-interface User {
-    id: number;
-    name: string;
-}
-
-interface Category {
-    id: number;
-    name: string;
-}
-
-interface Ticket {
-    id: number;
-    title: string;
-    body: string;
-    priority: string;
-    status: string;
-    category_id: number;
-    requester_id: number;
-    assignee_id: number | null;
-    due_at: string | null;
-}
+import type { Ticket } from '@/types/ticket';
+import type { User } from '@/types/user';
+import type { Category } from '@/types/category';
+import { toDateTimeLocal } from '@/lib/time';
 
 interface TicketEditPageProps {
     ticket: Ticket;
@@ -35,22 +17,15 @@ interface TicketEditPageProps {
     categories: Category[];
 }
 
-function toDateTimeLocal(isoString: string | null): string {
-    if (!isoString) return '';
-    const d = new Date(isoString);
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
 export default function TicketEdit({ ticket, users, categories }: TicketEditPageProps) {
     const { data, setData, put, processing, errors } = useForm({
         title: ticket.title,
-        body: ticket.body,
+        body: ticket.body ?? '',
         priority: ticket.priority,
         status: ticket.status,
-        category_id: String(ticket.category_id),
-        requester_id: ticket.requester_id,
-        assignee_id: ticket.assignee_id ? String(ticket.assignee_id) : '',
+        category_id: ticket.category_id != null ? String(ticket.category_id) : '',
+        requester_id: ticket.requester_id ?? 0,
+        assignee_id: ticket.assignee_id != null ? String(ticket.assignee_id) : '',
         due_at: toDateTimeLocal(ticket.due_at),
     });
 

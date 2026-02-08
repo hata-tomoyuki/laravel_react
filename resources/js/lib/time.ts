@@ -13,3 +13,17 @@ export const formatDate = (dateString: string) => {
         minute: '2-digit'
     });
 };
+
+/**
+ * ISO 8601形式の日付文字列を、<input type="datetime-local"> で利用可能な
+ * "YYYY-MM-DDTHH:MM" 形式の文字列に変換する
+ *
+ * @param isoString - 変換したいISO日付文字列（null許容）
+ * @returns "YYYY-MM-DDTHH:MM" 形式の文字列。nullや空の場合は空文字列
+ */
+export const toDateTimeLocal = (isoString: string | null): string => {
+    if (!isoString) return '';
+    const d = new Date(isoString);
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
