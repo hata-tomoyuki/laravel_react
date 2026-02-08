@@ -24,8 +24,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets.index');
     Route::get('/tickets/create', [TicketsController::class, 'create'])->name('tickets.create');
+    Route::get('/tickets/{id}/edit', [TicketsController::class, 'edit'])->name('tickets.edit');
     Route::get('/tickets/{id}', [TicketsController::class, 'show'])->name('tickets.show');
     Route::post('/tickets', [TicketsController::class, 'store'])->name('tickets.store');
+    Route::put('/tickets/{id}', [TicketsController::class, 'update'])->name('tickets.update');
 });
 
 

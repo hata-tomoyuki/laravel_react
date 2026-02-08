@@ -25,9 +25,8 @@ export default function TicketShow({ ticket }: TicketDetailPageProps) {
                                 一覧に戻る
                             </SecondaryButton>
                         </Link>
-                        {/* 編集機能は未実装のため、一旦一覧に戻るリンクにしています */}
-                        <Link href={route('tickets.index') as string}>
-                            <PrimaryButton className="opacity-50 cursor-not-allowed">
+                        <Link href={route('tickets.edit', ticket.id) as string}>
+                            <PrimaryButton>
                                 編集
                             </PrimaryButton>
                         </Link>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -67,15 +67,24 @@ class TicketsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
+        return Inertia::render('Ticket/Edit', [
+            'ticket' => $ticket,
+            'users' => $users,
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTicketRequest $request, string $id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+        $ticket->update($request->validated());
+        return redirect()->route('tickets.show', $ticket->id);
     }
 
     /**
