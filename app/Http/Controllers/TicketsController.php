@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTicketRequest;
 use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class TicketsController extends Controller
@@ -30,9 +32,11 @@ class TicketsController extends Controller
      */
     public function create()
     {
+        $currentUser = Auth::user();
         $users = User::all();
         $categories = Category::all();
         return Inertia::render('Ticket/Create', [
+            'currentUser' => $currentUser,
             'users' => $users,
             'categories' => $categories
         ]);
@@ -41,9 +45,10 @@ class TicketsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTicketRequest $request)
     {
-        //
+        $ticket = Ticket::create($request->validated());
+        return redirect()->route('tickets.show', $ticket->id);
     }
 
     /**

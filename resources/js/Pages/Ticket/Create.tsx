@@ -5,7 +5,6 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { type FormEventHandler } from 'react';
 import { priorityLabels, statusLabels } from '@/const/labels';
 
 interface User {
@@ -19,22 +18,24 @@ interface Category {
 }
 
 interface TicketCreatePageProps {
+    currentUser: User;
     users: User[];
     categories: Category[];
 }
 
-export default function TicketCreate({ users, categories }: TicketCreatePageProps) {
+export default function TicketCreate({ currentUser, users, categories }: TicketCreatePageProps) {
     const { data, setData, post, processing, errors, reset } = useForm({
         title: '',
         body: '',
         priority: 'low',
         status: 'open',
         category_id: '',
+        requester_id: currentUser.id,
         assignee_id: '',
         due_at: '',
     });
 
-    const submit: FormEventHandler = (e) => {
+    const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
         post(route('tickets.store'), {
@@ -56,7 +57,10 @@ export default function TicketCreate({ users, categories }: TicketCreatePageProp
                 <div className="mx-auto max-w-2xl sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <form onSubmit={submit} className="space-y-6">
+                            <form
+                                onSubmit={submit}
+                                className="space-y-6"
+                            >
                                 <div>
                                     <InputLabel htmlFor="title" value="タイトル" />
                                     <TextInput
